@@ -1,0 +1,80 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "s3-upload",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f93a4881-5e80-4d25-bca6-1ddd3cfc74f5",
+      "name": "Webhook",
+      "webhookId": "691ff61c-8116-4dfe-b4b6-baaf6554c1c2"
+    },
+    {
+      "parameters": {
+        "bucketName": "visual-inspection-uploads-akilesh-2025--use1-az4--x-s3",
+        "fileKey": "={{ $json.detail.requestParameters.key }}"
+      },
+      "type": "n8n-nodes-base.awsS3",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "b61780f1-a64e-442f-a7d0-3cc47743a9aa",
+      "name": "Download a file",
+      "credentials": {
+        "aws": {
+          "id": "lvLxiXwXZqmenatI",
+          "name": "AWS (IAM) account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "detail": {
+            "requestParameters": {
+              "bucketName": "visual-inspection-uploads-akilesh-2025--use1-az4--x-s3",
+              "key": "test_image.jpg"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Download a file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "cca4f97f-77a2-45a0-8b0f-411ea8854079",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a25e06b448ce5e329468d5ced7a4fdf18e9d9d3e3fc804fc6225bc543fbccc98"
+  },
+  "id": "2ISADaZ84ft4HTEG",
+  "tags": []
+}
